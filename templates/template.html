@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Aviation Manual</title></head>
+<body>
+    <h1>Aviation Operations Manual</h1>
+    <p>copyright blabla</p>
+
+    <p><strong>Chief Pilot:</strong> {{ chief_pilot }}</p>
+    <p>
+    Chief Pilot {{ chief_pilot }} fliegt für die Firma {{ company_name }} und ist verantwortlich für die Durchführung aller genehmigten Flugbetriebe.
+    </p>
+
+    {% if night_ops %}
+    <h2>Night Operations</h2>
+    <p>Night operations are approved with applicable risk mitigations.</p>
+    {% else %}
+    <p>Night operations are not permitted.</p>
+    {% endif %}
+
+    {% if uploaded_image %}
+    <img src="data:image/png;base64,{{ uploaded_image }}" alt="Hochgeladenes Bild" width="200">
+    {% endif %}
+
+    {% if above_400ft %}
+    <h2>Operations above 400 ft</h2>
+    <p>Approved for operations above 400 ft AGL.</p>
+    {% else %}
+    <p>Operations are limited to 400 ft AGL or below.</p>
+    {% endif %}
+
+    {% if drones %}
+    <h2>Drohnenliste</h2>
+    <table border="1" cellspacing="0" cellpadding="5">
+      <tr>
+        <th>Name</th>
+        <th>Version</th>
+      </tr>
+      {% for drone in drones %}
+      <tr>
+        <td>{{ drone.name }}</td>
+        <td>{{ drone.version }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
