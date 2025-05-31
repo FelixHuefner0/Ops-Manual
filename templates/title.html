@@ -1,73 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>{{ company_name }} - RPAS Manual</title>
-    <style>
-        body {
-            font-family: Arial;
-            font-size: 12pt;
-            color: #000;
-            margin: 0;
-            padding: 0;
-        }
+<div class="title-wrapper">
+  <!-- Fake vertical spacing -->
+  {% for i in range(17) %}
+  <br>
+  {% endfor %}
 
-        .title {
-            font-size: 28pt;
-            font-weight: normal;
-            margin: 0;
-            padding: 0;
-        }
+  <div class="title">{{ company_name }}</div>
+  <div class="manual-info">
+      <div>CASR PART 101</div>
+      <div>RPAS Operations Manual</div>
+  </div>
 
-        .manual-info {
-            font-size: 11pt;
-            line-height: 1.2;
-        }
+  <!-- <hr> didn't work (margine wise) -->
+  <table width="100%" style="margin: 16px 60px;">
+    <tr>
+      <td style="border-top: 1px solid #000;"></td>
+    </tr>
+  </table>
 
-        .pagebreak
-        {
-            page-break-after: always
-        }
-    </style>
-</head>
-<body>
-    <div class="title-wrapper">
-        <!-- Fake vertical spacing -->
-        <!-- {% for i in range(17) %}
-        <br>
-        {% endfor %} -->
-
-        <div class="title">{{ company_name }}</div>
-
-        <div class="manual-info">
-            <div>CASR PART 101</div>
-            <div>RPAS Operations Manual</div>
-        </div>
-
-        <!-- <hr> didn't work (margine wise) -->
-        <table width="100%" style="margin-top: 16pt; margin-bottom: 24pt;">
-          <tr>
-            <td style="border-top: 1px solid #000;"></td>
-          </tr>
-        </table>
-
-        <table style="width: 100%; font-size: 12pt; border-collapse: collapse; margin-top: 20pt;">
-          <tr>
-            <td style="width: 7cm; font-weight: bold; text-align: left;">Version:</td>
-            <td style="text-align: left;">{{ version_number }} – {{ issue_date }}</td>
-          </tr>
-          <tr>
-            <td style="font-weight: bold; text-align: left;">Approved by:</td>
-            <td style="text-align: left;">{{ approved_by }}</td>
-          </tr>
-          <tr>
-            <td style="font-weight: bold; text-align: left;">Next Review Date:</td>
-            <td style="text-align: left;">{{ next_review_date }}</td>
-          </tr>
-        </table>
-
-    </div>
-    <div class="pagebreak">
+  <table style="width: 100%; font-size: 12pt; border-collapse: collapse; margin-top: 20pt;">
+    <tr>
+      <td style="width: 7cm; font-weight: bold; text-align: left;">Version:</td>
+      <td style="text-align: left;">{{ version_number }} – {{ issue_date }}</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; text-align: left;">Approved by:</td>
+      <td style="text-align: left;">{{ approved_by }}</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; text-align: left;">Next Review Date:</td>
+      <td style="text-align: left;">{{ next_review_date }}</td>
+    </tr>
+  </table>
 </div>
-</body>
-</html>
+<div class="pagebreak"></div>

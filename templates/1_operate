@@ -1,0 +1,56 @@
+<h2>1.4 Flight Operations</h2>
+
+<h3>1.4.13 Operations above 400 ft AGL</h3>
+<p>
+    Operations above 400 ft AGL (measured from the point directly below the RPA) require official authorisation.
+    Before seeking approval, the CRP must conduct an assessment to show any added risks and controls.
+    Items to be considered include:
+</p>
+<ul>
+    <li>proximity to obstacles (shielding)</li>
+    <li>crewed aircraft flight paths</li>
+    <li>ability to maintain VLOS</li>
+    <li>aeronautical radio requirements</li>
+    <li>NOTAM requirements</li>
+    <li>environmental conditions</li>
+</ul>
+
+<h3>1.4.14 Operations outside of VLOS</h3>
+<p>
+    RPA must not be flown outside of VLOS without CASA approval.
+    If CASA has authorised the operation, procedures can be found in Appendix A.
+</p>
+
+<h3>1.4.15 Indoor (contained) operations</h3>
+<p>
+    The CRP may approve indoor operations. Where the operation is within the no-fly zones of a controlled or uncontrolled
+    aerodrome, the CRP must consider the requirements of PART 101 MOS 4.04 and 9.05, respectively, when approving the task.
+</p>
+<p>
+    Indoor operations may occur during relevant events. Refer to Appendix D for the specialised operating procedures.
+</p>
+
+<h3>1.4.16 Tethered operations</h3>
+{% if tethered_ops %}
+<p>
+    The CRP may approve tethered operations.
+    Despite the Part 101 MOS 4.04, CASA approval is required for tethered operations in the no-fly zone of a controlled aerodrome.
+</p>
+<p>
+    Tethered operations within the no-fly zones of a non-controlled aerodrome are allowed without extra CASA approval, provided
+    they meet the Part 101 MOS 9.05 requirements.
+</p>
+<p>
+    Tethered operations within the no-fly zone of a non-controlled aerodrome are permitted during relevant events.
+    For the specialised tethered operation procedures, refer to Appendix A.
+</p>
+{% else %}
+<p class="reserved">RESERVED</p>
+{% endif %}
+
+<h3>1.4.17 Environmental and weather monitoring</h3>
+<p>
+    RP must check the prevailing environmental and weather conditions throughout each operation.
+    If conditions deteriorate during an operation, the RP must land the RPA as soon as reasonably practical and
+    suspend the operation until the conditions are within the limits of the RPAS as per the relevant section of Appendix C.
+</p>

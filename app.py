@@ -17,13 +17,14 @@ def render_template(template_name, context):
     return template.render(context)
 
 # Streamlit UI
-st.title("RPAS Manual Form")
+st.title("RPAS Operations Manual Form")
 
-company_name = st.text_input("Company Name", value="FlyFast")
-chief_remote_pilote = st.text_input("Chief Remote Pilote", value="Ali Abhulada")
 version_number = st.text_input("Version Number", value="1")
+company_name = st.text_input("Company Name", value="FlyFast")
+chief_remote_pilote = st.text_input("Chief Remote Pilote", value="John Doe")
+include_tethered_ops = st.checkbox("Include tethered operations?")
 
-# ----------
+# PDF Creation
 
 if st.button("PDF generieren") and company_name:
     issue_date = date.today().strftime("%d-%m-%Y")
@@ -34,13 +35,21 @@ if st.button("PDF generieren") and company_name:
         "issue_date": issue_date,
         "next_review_date": next_review_date,
         "approved_by": chief_remote_pilote,
-        "version_number": version_number
+        "version_number": version_number,
+        "tethered_ops": include_tethered_ops
     }
 
-    TEMPLATES = ["applicability.html"]
-    html_combined = render_template("title.html", context).join([render_template(tmpl, context) for tmpl in TEMPLATES])
-    pdf_bytes = convert_html_to_pdf(html_combined)
+    # Render templates
+    section_templates = ["title.html", "applicability.html", "1_operate"]
+    section_html = [render_template(tmpl, context) for tmpl in section_templates]
+    combined_content = "\n".join(section_html)
 
+    # embed in layout
+    env = Environment(loader=FileSystemLoader("templates"))
+    layout_template = env.get_template("layout.html")
+    full_html = layout_template.render(context | {"content": combined_content})
+
+    pdf_bytes = convert_html_to_pdf(full_html)
 
     if pdf_bytes:
         st.success("PDF erfolgreich erstellt!")
