@@ -1,14 +1,13 @@
 import streamlit as st
 from jinja2 import Environment, FileSystemLoader
-from xhtml2pdf import pisa
+from weasyprint import HTML
 from datetime import date, timedelta
 import io
 
-# PDF-Erzeugung aus HTML
+# PDF-Erzeugung aus HTML mit WeasyPrint
 def convert_html_to_pdf(source_html):
-    result = io.BytesIO()
-    pisa_status = pisa.CreatePDF(source_html, dest=result)
-    return result.getvalue() if not pisa_status.err else None
+    pdf_bytes = HTML(string=source_html).write_pdf()
+    return pdf_bytes
 
 # Template-Rendering aus templates/
 def render_template(template_name, context):
@@ -25,7 +24,6 @@ chief_remote_pilote = st.text_input("Chief Remote Pilote", value="John Doe")
 include_tethered_ops = st.checkbox("Include tethered operations?")
 
 # PDF Creation
-
 if st.button("PDF generieren") and company_name:
     issue_date = date.today().strftime("%d-%m-%Y")
     next_review_date = (date.today() + timedelta(days=365)).strftime("%d-%m-%Y")
@@ -51,8 +49,5 @@ if st.button("PDF generieren") and company_name:
 
     pdf_bytes = convert_html_to_pdf(full_html)
 
-    if pdf_bytes:
-        st.success("PDF erfolgreich erstellt!")
-        st.download_button("Download PDF", data=pdf_bytes, file_name="Titelblatt.pdf", mime="application/pdf")
-    else:
-        st.error("Fehler beim Erstellen der PDF.")
+    st.success("PDF erfolgreich erstellt!")
+    st.download_button("Download PDF", data=pdf_bytes, file_name="Titelblatt.pdf", mime="application/pdf")
